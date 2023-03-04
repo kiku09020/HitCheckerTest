@@ -73,42 +73,6 @@ namespace MyEditor {
 
                 return toggleFlag;
             }
-
-            /// <summary>
-            /// 編集不可にする
-            /// </summary>
-            public static void DisableGroup(Action action,  Direction direction = Direction.vertical, bool disable = true)
-            {
-                using (new EditorGUILayout.HorizontalScope()) {
-                    Space(SpaceType.horizontal);
-
-                    Grouping(direction, false, () => {
-                        EditorGUI.BeginDisabledGroup(disable);
-                        action?.Invoke();
-                        EditorGUI.EndDisabledGroup();
-                    });
-                }
-            }
-
-            /// <summary>
-            /// スクロールグループ
-            /// </summary>
-            public static Vector2 Scroll(Direction direction, float size, Vector2 varPos, Action action)
-            {
-                GUILayoutOption gui = null;
-                switch (direction) {
-                    case Direction.vertical: gui = GUILayout.Height(size); break;  // Vertical:Heightを指定
-                    case Direction.horizontal: gui = GUILayout.Width(size); break;  // Horizontal:Widthを指定
-                }
-
-                using (var scrollView = new EditorGUILayout.ScrollViewScope(varPos, gui)) {
-                    action?.Invoke();
-
-                    Line(Color.black);
-
-                    return varPos = scrollView.scrollPosition;
-                }
-            }
         }
     }
 }

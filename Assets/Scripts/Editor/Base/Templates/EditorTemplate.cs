@@ -43,15 +43,6 @@ namespace MyEditor {
             }
         }
 
-        /// <summary>
-        /// ラインを挿入
-        /// </summary>
-        public static void Line(Color color, float thickness = 3)
-        {
-            ColorTemp.ChangeColor(color, () => {
-                GUILayout.Box("", GUILayout.Height(thickness), GUILayout.ExpandWidth(true));
-            });
-        }
         #endregion
     }
 }
